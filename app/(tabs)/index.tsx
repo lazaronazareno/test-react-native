@@ -1,75 +1,75 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import CatCard from '@/components/ui/CatCard';
+import { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+interface CatImage {
+  id: string;
+  url: string;
+  width: number;
+  height: number;
+}
+
 
 export default function HomeScreen() {
+  const [data, setData] = useState<CatImage[] | null>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate fetching data
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        // Simulate a network request
+        const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=10');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const responseData = await response.json();
+        console.log('Fetched data:', responseData);
+        setData(responseData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <View></View>;
+  }
+  console.log('Data state:', data![0]);
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <ScrollView style={styles.titleContainer}>
+      <CatCard item={data![0]} name='Luis' status='En Adopción' />
+      <CatCard item={data![1]} name='Mia' status='Adoptada' />
+      <CatCard item={data![2]} name='Luna' status='En Adopción' />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: 'column',
     gap: 8,
+    width: '100%',
+    height: '100%',
+    paddingVertical: 48,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  estado: {
+    backgroundColor: '#4CAF50',
+    padding: 8,
+    borderRadius: 8,
+    marginTop: 16,
   },
   reactLogo: {
     height: 178,
     width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
   },
+  titulo: {
+    color: 'white',
+  }
 });
