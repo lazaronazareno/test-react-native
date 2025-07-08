@@ -1,21 +1,14 @@
 import CatCard from '@/components/ui/CatCard';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-
-interface CatImage {
-  id: string;
-  url: string;
-  width: number;
-  height: number;
-}
-
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import catsData from '../../constants/data.json';
 
 export default function HomeScreen() {
-  const [data, setData] = useState<CatImage[] | null>([]);
+  const [data, setData] = useState(null as any[] | null);
   const [loading, setLoading] = useState(true);
 
-  const handleCatPress = (id) => {
+  const handleCatPress = (id: number) => {
     router.push({
       pathname: '/cat-detail' as any,
       params: { catId: id }
@@ -25,26 +18,20 @@ export default function HomeScreen() {
   //https://api.thecatapi.com/v1/images/0XYvRd7oD
 
   useEffect(() => {
-    // Simulate fetching data
-    const fetchData = async () => {
+    // Load data from local JSON file
+    const loadData = async () => {
       try {
         setLoading(true);
-        // Simulate a network request
-        const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=10');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const responseData = await response.json();
-        console.log('Fetched data:', responseData);
-        setData(responseData);
+        console.log('Loaded data:', data);
+        setData(catsData.cats);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error loading data:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
+    loadData();
   }, []);
 
   if (loading) {
@@ -54,9 +41,16 @@ export default function HomeScreen() {
 
   return (
     <ScrollView style={styles.titleContainer}>
-      <CatCard item={data![0]} name='Luis' status='En Adopción' onPress={() => handleCatPress(data![0].id)} />
-      <CatCard item={data![1]} name='Mia' status='Adoptada' onPress={() => handleCatPress(data![1].id)} />
-      <CatCard item={data![2]} name='Luna' status='En Adopción' onPress={() => handleCatPress(data![2].id)} />
+      <Text style={styles.title}>🐱 Gatitos en Adopción</Text>
+      {data?.map((item, index) => (
+        <CatCard
+          key={item.id}
+          item={item}
+          name={item.name || 'Gatito sin nombre'}
+          status={index % 2 === 0 ? 'En Adopción' : 'Transito'}
+          onPress={() => handleCatPress(item.id)}
+        />
+      ))}
     </ScrollView>
   );
 }
@@ -68,18 +62,13 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     paddingVertical: 48,
+    paddingHorizontal: 16,
   },
-  estado: {
-    backgroundColor: '#4CAF50',
-    padding: 8,
-    borderRadius: 8,
-    marginTop: 16,
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#4CAF50',
+    marginBottom: 16,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-  },
-  titulo: {
-    color: 'white',
-  }
 });

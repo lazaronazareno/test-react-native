@@ -1,110 +1,161 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
+import React from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
-export default function TabTwoScreen() {
+export default function AboutScreen() {
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
+    <ThemedView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <ThemedView style={styles.header}>
+          <ThemedText style={styles.title}>🐱 Guardería de Gatitos</ThemedText>
+          <ThemedText style={styles.subtitle}>
+            &quot;Conectando corazones felinos con familias amorosas&quot;
           </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+        </ThemedView>
+
+        <ThemedView style={styles.section}>
+          <View style={styles.iconHeader}>
+            <IconSymbol name="chevron.right" size={32} color={'white'} />
+            <ThemedText style={styles.sectionTitle}>Nuestra Misión</ThemedText>
+          </View>
+          <ThemedText style={styles.text}>
+            Nos dedicamos a rescatar, cuidar y encontrar hogares amorosos para gatitos que necesitan una segunda oportunidad. Cada gatito en nuestra guardería recibe amor, cuidados veterinarios y la atención personalizada que merece.
+          </ThemedText>
+        </ThemedView>
+
+        <ThemedView style={styles.section}>
+          <View style={styles.iconHeader}>
+            <IconSymbol name="chevron.right" size={32} color={'white'} />
+            <ThemedText style={styles.sectionTitle}>Adopción vs Tránsito</ThemedText>
+          </View>
+          <ThemedText style={styles.text}>
+            <ThemedText style={styles.bold}>En Adopción:</ThemedText> Gatitos listos para encontrar su hogar definitivo. Han completado todos sus cuidados veterinarios y están preparados para una nueva vida.
+          </ThemedText>
+          <ThemedText style={styles.text}>
+            <ThemedText style={styles.bold}>En Tránsito:</ThemedText> Gatitos que están en proceso de recuperación o esperando completar sus tratamientos antes de estar disponibles para adopción.
+          </ThemedText>
+        </ThemedView>
+
+        <ThemedView style={styles.section}>
+          <View style={styles.iconHeader}>
+            <IconSymbol name="chevron.right" size={32} color={'white'} />
+            <ThemedText style={styles.sectionTitle}>Nuestros Cuidados</ThemedText>
+          </View>
+          <ThemedText style={styles.text}>
+            Todos nuestros gatitos reciben:
+          </ThemedText>
+          <View style={styles.list}>
+            <ThemedText style={styles.listItem}>• Atención veterinaria completa</ThemedText>
+            <ThemedText style={styles.listItem}>• Vacunación según calendario</ThemedText>
+            <ThemedText style={styles.listItem}>• Desparasitación</ThemedText>
+            <ThemedText style={styles.listItem}>• Esterilización (cuando es apropiado)</ThemedText>
+            <ThemedText style={styles.listItem}>• Socialización y amor</ThemedText>
+          </View>
+        </ThemedView>
+
+        <ThemedView style={styles.section}>
+          <View style={styles.iconHeader}>
+            <IconSymbol name="chevron.right" size={32} color={'white'} />
+            <ThemedText style={styles.sectionTitle}>Contacto</ThemedText>
+          </View>
+          <ThemedText style={styles.text}>
+            ¿Interesado en adoptar o ayudar? Contáctanos:
+          </ThemedText>
+          <ThemedText style={styles.contactInfo}>
+            📧 info@guarderiadegatitos.com
+          </ThemedText>
+          <ThemedText style={styles.contactInfo}>
+            📱 +1 (555) 123-4567
+          </ThemedText>
+          <ThemedText style={styles.contactInfo}>
+            📍 Calle de los Gatitos 123, Ciudad Felina
+          </ThemedText>
+        </ThemedView>
+
+        <ThemedView style={styles.footer}>
+          <ThemedText style={styles.footerText}>
+            💖 Hecho con amor para nuestros amigos felinos
+          </ThemedText>
+        </ThemedView>
+      </ScrollView>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: {
+    flex: 1,
   },
-  titleContainer: {
+  scrollContent: {
+    paddingBottom: 40,
+  },
+  header: {
+    paddingHorizontal: 20,
+    paddingTop: 60,
+    paddingBottom: 30,
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 24,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 18,
+    textAlign: 'center',
+    lineHeight: 24,
+    marginVertical: 12,
+  },
+  section: {
+    marginHorizontal: 20,
+    marginBottom: 30,
+    padding: 20,
+    borderRadius: 16,
+    backgroundColor: 'rgba(0, 0, 0, 0.02)',
+  },
+  iconHeader: {
     flexDirection: 'row',
-    gap: 8,
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginLeft: 12,
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 24,
+    marginBottom: 12,
+  },
+  bold: {
+    fontWeight: 'bold',
+  },
+  list: {
+    marginTop: 8,
+  },
+  listItem: {
+    fontSize: 16,
+    lineHeight: 24,
+    marginBottom: 4,
+  },
+  contactInfo: {
+    fontSize: 16,
+    lineHeight: 24,
+    marginBottom: 8,
+    fontFamily: 'monospace',
+  },
+  footer: {
+    marginHorizontal: 20,
+    alignItems: 'center',
+    paddingVertical: 20,
+  },
+  footerText: {
+    fontSize: 16,
+    textAlign: 'center',
   },
 });

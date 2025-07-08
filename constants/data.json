@@ -1,0 +1,134 @@
+{
+  "cats": [
+    {
+      "id": "eo",
+      "name": "Luna",
+      "url": "https://cdn2.thecatapi.com/images/eo.jpg",
+      "width": 912,
+      "height": 609,
+      "details": {
+        "breed": "Gato doméstico",
+        "age": "2 años",
+        "color": "Atigrado"
+      },
+      "description": "Luna es una gatita muy juguetona y cariñosa. Le encanta dormir en lugares soleados y perseguir pequeños juguetes."
+    },
+    {
+      "id": "41g",
+      "name": "Michi",
+      "url": "https://cdn2.thecatapi.com/images/41g.jpg",
+      "width": 2592,
+      "height": 1936,
+      "details": {
+        "breed": "Persa",
+        "age": "3 años",
+        "color": "Blanco"
+      },
+      "description": "Michi es un gato tranquilo y elegante. Disfruta de las caricias y es muy fotogénico debido a su pelaje sedoso."
+    },
+    {
+      "id": "8n8",
+      "name": "Simba",
+      "url": "https://cdn2.thecatapi.com/images/8n8.jpg",
+      "width": 1024,
+      "height": 784,
+      "details": {
+        "breed": "Maine Coon",
+        "age": "4 años",
+        "color": "Naranja"
+      },
+      "description": "Simba es un gato grande y majestuoso. Es muy territorial pero cariñoso con su familia. Le gusta explorar el jardín."
+    },
+    {
+      "id": "asd",
+      "name": "Bella",
+      "url": "https://cdn2.thecatapi.com/images/asd.jpg",
+      "width": 2048,
+      "height": 1536,
+      "details": {
+        "breed": "Siamés",
+        "age": "1 año",
+        "color": "Crema y marrón"
+      },
+      "description": "Bella es una gatita muy vocal y activa. Le encanta comunicarse con maullidos y es extremadamente inteligente."
+    },
+    {
+      "id": "bc7",
+      "name": "Whiskers",
+      "url": "https://cdn2.thecatapi.com/images/bc7.jpg",
+      "width": 500,
+      "height": 335,
+      "details": {
+        "breed": "Británico de pelo corto",
+        "age": "5 años",
+        "color": "Gris"
+      },
+      "description": "Whiskers es un gato maduro y sabio. Prefiere la tranquilidad y observar el mundo desde su lugar favorito en la ventana."
+    },
+    {
+      "id": "bev",
+      "name": "Coco",
+      "url": "https://cdn2.thecatapi.com/images/bev.jpg",
+      "width": 400,
+      "height": 300,
+      "details": {
+        "breed": "Bengalí",
+        "age": "2 años",
+        "color": "Manchado"
+      },
+      "description": "Coco es un gato muy enérgico con patrones únicos en su pelaje. Le fascina trepar y saltar por toda la casa."
+    },
+    {
+      "id": "c7o",
+      "name": "Oliver",
+      "url": "https://cdn2.thecatapi.com/images/c7o.jpg",
+      "width": 800,
+      "height": 1204,
+      "details": {
+        "breed": "Ragdoll",
+        "age": "3 años",
+        "color": "Bicolor"
+      },
+      "description": "Oliver es un gato extremadamente relajado y dócil. Se deja cargar como un bebé y adora las sesiones de cepillado."
+    },
+    {
+      "id": "dg8",
+      "name": "Nala",
+      "url": "https://cdn2.thecatapi.com/images/dg8.jpg",
+      "width": 800,
+      "height": 517,
+      "details": {
+        "breed": "Abisinio",
+        "age": "2 años",
+        "color": "Rojizo"
+      },
+      "description": "Nala es una gata muy curiosa y atlética. Le encanta explorar lugares altos y siempre está buscando nuevas aventuras."
+    },
+    {
+      "id": "MjA3MDYzNA",
+      "name": "Felix",
+      "url": "https://cdn2.thecatapi.com/images/MjA3MDYzNA.jpg",
+      "width": 960,
+      "height": 720,
+      "details": {
+        "breed": "Gato común europeo",
+        "age": "4 años",
+        "color": "Negro y blanco"
+      },
+      "description": "Felix es un gato clásico con personalidad fuerte. Es independiente pero leal, y tiene una rutina muy establecida."
+    },
+    {
+      "id": "LR5DtaA8M",
+      "name": "Princess",
+      "url": "https://cdn2.thecatapi.com/images/LR5DtaA8M.jpg",
+      "width": 750,
+      "height": 750,
+      "details": {
+        "breed": "Angora turco",
+        "age": "3 años",
+        "color": "Blanco puro"
+      },
+      "description": "Princess es una gata elegante y refinada. Su pelaje largo y sedoso requiere cuidados especiales, pero su belleza es incomparable."
+    }
+  ]
+}
