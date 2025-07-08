@@ -1,4 +1,5 @@
 import CatCard from '@/components/ui/CatCard';
+import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
@@ -13,6 +14,15 @@ interface CatImage {
 export default function HomeScreen() {
   const [data, setData] = useState<CatImage[] | null>([]);
   const [loading, setLoading] = useState(true);
+
+  const handleCatPress = (id) => {
+    router.push({
+      pathname: '/cat-detail' as any,
+      params: { catId: id }
+    });
+  };
+
+  //https://api.thecatapi.com/v1/images/0XYvRd7oD
 
   useEffect(() => {
     // Simulate fetching data
@@ -44,16 +54,16 @@ export default function HomeScreen() {
 
   return (
     <ScrollView style={styles.titleContainer}>
-      <CatCard item={data![0]} name='Luis' status='En Adopción' />
-      <CatCard item={data![1]} name='Mia' status='Adoptada' />
-      <CatCard item={data![2]} name='Luna' status='En Adopción' />
+      <CatCard item={data![0]} name='Luis' status='En Adopción' onPress={() => handleCatPress(data![0].id)} />
+      <CatCard item={data![1]} name='Mia' status='Adoptada' onPress={() => handleCatPress(data![1].id)} />
+      <CatCard item={data![2]} name='Luna' status='En Adopción' onPress={() => handleCatPress(data![2].id)} />
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   titleContainer: {
-    flexDirection: 'column',
+    display: 'flex',
     gap: 8,
     width: '100%',
     height: '100%',
