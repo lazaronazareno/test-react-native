@@ -1,35 +1,13 @@
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import catsData from '../constants/data.json';
 
 export default function CatDetailScreen() {
   const { catId } = useLocalSearchParams();
   const [data, setData] = useState(null as any);
-  const [isUnreadable, setIsUnreadable] = useState(false);
-
-  // Rainbow colors
-  const rainbowColors = [
-    '#FF0000', '#FF7F00', '#FFFF00', '#00FF00',
-    '#0000FF', '#4B0082', '#9400D3', '#FF1493',
-    '#00FFFF', '#FF69B4', '#32CD32', '#FFD700'
-  ];
-
-  const getRandomColor = () => {
-    return rainbowColors[Math.floor(Math.random() * rainbowColors.length)];
-  };
-
-  const getRandomTextStyle = () => ({
-    color: getRandomColor(),
-    opacity: isUnreadable ? Math.random() * 0.3 + 0.1 : Math.random() * 0.4 + 0.6,
-    textShadowColor: getRandomColor(),
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: isUnreadable ? 15 : 3,
-  });
 
   useEffect(() => {
-    setIsUnreadable(Math.random() < 0.1);
-
     const fetchCatData = async () => {
       try {
         const catData = catsData.cats.find(cat => cat.id === catId);
@@ -45,14 +23,14 @@ export default function CatDetailScreen() {
   }, [catId]);
 
   if (!data) {
-    return <View><Text style={getRandomTextStyle()}>Loading...</Text></View>;
+    return <View><Text>Loading...</Text></View>;
   }
 
   console.log('Cat ID:', catId);
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <Text style={[styles.title, getRandomTextStyle()]}>
+      <Text style={styles.title}>
         {data.name}
       </Text>
 
@@ -63,31 +41,37 @@ export default function CatDetailScreen() {
       />
 
       {data.description && (
-        <Text style={[styles.description, getRandomTextStyle()]}>
+        <Text style={styles.description}>
           {data.description}
         </Text>
       )}
 
       {data.details && (
         <View style={styles.detailsContainer}>
-          <Text style={[styles.detailsTitle, getRandomTextStyle()]}>
-            Cat Information
+          <Text style={styles.detailsTitle}>
+            Detalles del Gatito
           </Text>
 
-          <Text style={[styles.text, getRandomTextStyle()]}>
-            <Text style={[styles.boldText, getRandomTextStyle()]}>Breed: </Text>
+          <Text style={styles.text}>
+            <Text style={styles.boldText}>Raza: </Text>
             {data.details.breed}
           </Text>
 
-          <Text style={[styles.text, getRandomTextStyle()]}>
-            <Text style={[styles.boldText, getRandomTextStyle()]}>Age: </Text>
+          <Text style={styles.text}>
+            <Text style={styles.boldText}>Edad: </Text>
             {data.details.age}
           </Text>
 
-          <Text style={[styles.text, getRandomTextStyle()]}>
-            <Text style={[styles.boldText, getRandomTextStyle()]}>Color: </Text>
+          <Text style={styles.text}>
+            <Text style={styles.boldText}>Color: </Text>
             {data.details.color}
           </Text>
+
+          <TouchableOpacity style={styles.button} onPress={() => console.log('Adopt this cat!')}>
+            <Text style={styles.text}>
+              <Text style={styles.boldText}>Adoptar</Text>
+            </Text>
+          </TouchableOpacity>
         </View>
       )}
     </ScrollView>
@@ -107,6 +91,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 20,
+    color: '#fff',
   },
   image: {
     width: '100%',
@@ -118,8 +103,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: '#fff',
   },
   text: {
+    color: '#fff',
     marginBottom: 5,
     fontSize: 24,
   },
@@ -130,13 +117,22 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 15,
     fontStyle: 'italic',
+    color: '#fff',
   },
   detailsContainer: {
     marginTop: 20,
   },
   detailsTitle: {
+    color: 'orange',
     fontSize: 36,
     fontWeight: 'bold',
     marginBottom: 15,
+  },
+  button: {
+    backgroundColor: '#4CAF50',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 24,
   },
 });

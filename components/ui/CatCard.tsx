@@ -2,7 +2,6 @@ import { Image } from "expo-image";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function CatCard({ item, name, status, onPress }: { item: any, name?: string, status?: string, onPress?: (item: any) => void }) {
-  console.log('Rendering item:', item);
   return (
     <TouchableOpacity onPress={onPress} style={styles.cardContainer} >
       <Image source={{ uri: item.url }} style={styles.reactLogo} contentFit="fill" />

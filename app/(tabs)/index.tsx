@@ -1,7 +1,7 @@
 import CatCard from '@/components/ui/CatCard';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import catsData from '../../constants/data.json';
 
 export default function HomeScreen() {
@@ -15,10 +15,8 @@ export default function HomeScreen() {
     });
   };
 
-  //https://api.thecatapi.com/v1/images/0XYvRd7oD
 
   useEffect(() => {
-    // Load data from local JSON file
     const loadData = async () => {
       try {
         setLoading(true);
@@ -35,7 +33,7 @@ export default function HomeScreen() {
   }, []);
 
   if (loading) {
-    return <View></View>;
+    return <Text>Cargando...</Text>;
   }
   console.log('Data state:', data![0]);
 
@@ -63,6 +61,7 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingVertical: 48,
     paddingHorizontal: 16,
+    paddingBottom: 120,
   },
   title: {
     fontSize: 32,
